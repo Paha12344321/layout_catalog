@@ -1,3 +1,4 @@
+// === COLORS ===
 $color-blue: #00acdc;
 $color-darkblue: #060b35;
 $color-white: #fff;
@@ -5,30 +6,32 @@ $color-lightwhite: #f3f3f3;
 $color-lightpurple: #616070;
 $color-bluelight: #34568b;
 
+// === GLOBAL ===
 * {
   box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
 }
 
 body {
   font-family: Roboto, Arial, sans-serif;
   font-size: 12px;
   font-weight: 500;
+  margin: 0;
+  padding: 0;
 }
 
+// === HEADER ===
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: $color-white;
   padding: 0 50px;
-  margin: 0;
   box-shadow: 0 2px 4px #0000000d;
+}
+
+.header__logo {
+  width: 40px;
+  height: 40px;
 }
 
 .nav__list {
@@ -39,9 +42,8 @@ body {
   padding: 0;
 }
 
-.logo {
-  width: 40px;
-  height: 40px;
+.nav__item + .nav__item {
+  margin-left: 20px;
 }
 
 .nav__link {
@@ -55,10 +57,6 @@ body {
   transition: all 0.3s ease;
 }
 
-.nav__item + .nav__item {
-  margin-left: 20px;
-}
-
 .nav__link:hover {
   color: $color-blue;
 }
@@ -66,28 +64,27 @@ body {
 .is-active {
   color: $color-blue;
   position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    background: $color-blue;
+    width: 100%;
+    left: 0;
+    border-radius: 8px;
+    bottom: 0;
+  }
 }
 
-.is-active::after {
-  content: '';
-  position: absolute;
-  height: 4px;
-  background: $color-blue;
-  width: 100%;
-  left: 0;
-  border-radius: 8px;
-  bottom: 0;
-}
-
+// === CARD ===
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   width: 200px;
-  height: 100%;
   padding: 16px;
   border: 1px solid $color-lightwhite;
   border-radius: 5px;
@@ -98,7 +95,6 @@ body {
   &__image {
     position: absolute;
     top: 32px;
-    display: flex;
     width: 160px;
     height: 134px;
     background-image: url(/src/images/imac.jpeg);
@@ -122,19 +118,27 @@ body {
     font-weight: 400;
     line-height: 14px;
   }
+
+  &:hover {
+    transform: scale(1.2);
+
+    .card__title {
+      color: $color-bluelight;
+    }
+  }
 }
 
-.review {
+// === CARD REVIEW ===
+.card__review {
   display: flex;
-
   width: 30%;
-
   font-size: 10px;
   font-weight: 400;
   line-height: 14px;
   color: $color-darkblue;
 }
 
+// === PRICE & BUTTON ===
 .price {
   display: flex;
   gap: 85px;
@@ -169,76 +173,52 @@ body {
   color: $color-white;
   text-decoration: none;
   text-transform: uppercase;
-
   background-color: $color-blue;
   transition: all 0.3s ease;
+
+  &:hover {
+    border: 1px solid $color-blue;
+    color: $color-blue;
+    background-color: $color-white; // ✅ исправлено
+  }
 }
 
-.btn:hover {
-  border: 1px solid $color-blue;
-  color: $color-blue;
-  background-color: transparent;
-}
-
-.card:hover {
-  transform: scale(1.2);
-}
-
-.card:hover .card__title {
-  color: $color-bluelight;
-}
-
-.card__rating {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 166px;
-  height: 16px;
-}
-
+// === RATING ===
 .rating {
   display: flex;
-}
 
-.rating__star {
-  background-image: url(/src/images/star.svg);
-  width: 16px;
-  height: 16px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
+  &__star {
+    background-image: url(/src/images/star.svg);
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
 
-.rating__star:not(:last-child) {
-  margin-right: 4px;
-}
-
-.stars--1 .rating__star:nth-child(-n + 1) {
-  background-image: url(/src/images/star-active.svg);
-}
-
-.stars--2 .rating__star:nth-child(-n + 2) {
-  background-image: url(/src/images/star-active.svg);
-}
-
-.stars--3 .rating__star:nth-child(-n + 3) {
-  background-image: url(/src/images/star-active.svg);
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
 }
 
 .rating--4 .rating__star:nth-child(-n + 4) {
   background-image: url(/src/images/star-active.svg);
 }
 
-.stars--5 .rating__star:nth-child(-n + 5) {
-  background-image: url(/src/images/star-active.svg);
+.card__rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 166px;
+  height: 16px;
 }
 
+// === CONTAINER ===
 .container {
   --columns: 1;
 
   display: grid;
   grid-template-columns: repeat(var(--columns), 200px);
-  gap: 46px 48px;
+  gap: 48px 46px; // ✅ порядок исправлен
   place-content: center;
   padding: 50px 40px;
 }
