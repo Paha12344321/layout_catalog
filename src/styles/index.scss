@@ -6,6 +6,14 @@ $color-lightwhite: #f3f3f3;
 $color-lightpurple: #616070;
 $color-bluelight: #34568b;
 
+$card-width: 200px;
+$grid-gap-vertical: 48px;
+$grid-gap-horizontal: 46px;
+$container-padding-vertical: 50px;
+$container-padding-horizontal: 40px;
+
+$gap-star: 4px;
+
 // === GLOBAL ===
 * {
   box-sizing: border-box;
@@ -84,7 +92,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: $card-width;
   padding: 16px;
   border: 1px solid $color-lightwhite;
   border-radius: 5px;
@@ -195,7 +203,7 @@ body {
     background-position: center;
 
     &:not(:last-child) {
-      margin-right: 4px;
+      margin-right: $gap-star;
     }
   }
 }
@@ -217,10 +225,10 @@ body {
   --columns: 1;
 
   display: grid;
-  grid-template-columns: repeat(var(--columns), 200px);
-  gap: 48px 46px; // ✅ порядок исправлен
+  grid-template-columns: repeat(var(--columns), $card-width);
+  gap: $grid-gap-vertical $grid-gap-horizontal;
   place-content: center;
-  padding: 50px 40px;
+  padding: $container-padding-vertical $container-padding-horizontal;
 }
 
 @media (min-width: 488px) {
